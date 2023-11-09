@@ -1,0 +1,26 @@
+name: Lint Check
+
+on:
+  push:
+    branches:
+      - main # выбираем ветку
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest # выбираем версию ОС
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install pylint
+      run: pip install pylint
+
+    - name: Run Linter
+      run: python lint.py # запускаем наш линтер
+
